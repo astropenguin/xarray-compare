@@ -1,1 +1,1 @@
-# xarray-where
+# xarray-compare

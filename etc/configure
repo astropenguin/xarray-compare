@@ -24,6 +24,7 @@ mkdir -p .vscode
 
 cat << EOS > .vscode/settings.json
 {
+    "editor.formatOnSave": true,
     "python.formatting.provider": "black",
     "python.linting.enabled": true,
     "python.linting.lintOnSave": true,

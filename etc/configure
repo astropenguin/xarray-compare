@@ -3,21 +3,23 @@ set -eu
 
 
 # Configure Python environment
-if type poetry >/dev/null 2>&1
+if ! type poetry >/dev/null 2>&1
 then
-    poetry install
-else
     echo "Poetry is not installed"
     exit 1
 fi
 
+poetry install
+
 
 # Configure VS Code
-if type code >/dev/null 2>&1
+if ! type code >/dev/null 2>&1
 then
-    code --install-extension ms-python.python
+    echo "VS Code (code) is not installed"
+    exit 1
 fi
 
+code --install-extension ms-python.python
 mkdir -p .vscode
 
 cat << EOS > .vscode/settings.json

@@ -16,7 +16,7 @@ xarray = "^0.15"
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
 flake8 = "^3.8"
-ipython = "^7.17"
+ipython = "^7.16"
 pytest = "^6.0"
 sphinx = "^3.2"
 pydata-sphinx-theme = "^0.3"

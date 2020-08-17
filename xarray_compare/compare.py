@@ -23,10 +23,12 @@ from .utils import dataarray_method
 
 # constants
 class Intervals(Enum):
-    LORO = "()"  # left-open, right-open
-    LCRO = "[)"  # left-closed, right-open
-    LORC = "(]"  # left-open, right-closed
-    LCRC = "[]"  # left-closed, right-closed
+    """Definitions of mathematical intervals."""
+
+    LORO = "()"  #: left-open, right-open
+    LCRO = "[)"  #: left-closed, right-open
+    LORC = "(]"  #: left-open, right-closed
+    LCRC = "[]"  #: left-closed, right-closed
 
 
 OPERATORS = {

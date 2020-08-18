@@ -47,8 +47,9 @@ def isbetween(
     """Test whether each value in a DataArray falls within an interval.
 
     An interval is defined by ``lower``, ``upper``, and ``interval``.
-    If ``interval`` is given as ``'[)'``, the interval is [lower, upper).
-    Then the function returns ``(dataarray >= lower) & (dataarray < upper)``.
+    For example, if ``interval`` is given as ``'[)'``, the interval of
+    [lower, upper) will be used for the evaluation. Then the function
+    returns ``(dataarray >= lower) & (dataarray < upper)``.
 
     Args:
         dataarray: DataArray to be compared.
@@ -57,12 +58,12 @@ def isbetween(
         upper: Upper endpoint of the interval.
             If ``None`` is given, then the upper end is not evaluated.
         interval: String which determine the type of the interval.
-            Either ``[]`` (closed; default), ``[)`` (L-closed, R-open),
-            ``(]`` (L-open, R-closed), or ``()`` (open) is accepted.
+            Either ``'[]'`` (closed; default), ``'[)'`` (L-closed, R-open),
+            ``'(]'`` (L-open, R-closed), or ``'()'`` (open) is accepted.
 
     Returns:
         Boolean DataArray each value of which is ``True``
-            where it falls within the interval and ``False`` otherwise.
+        where it falls within the interval and ``False`` otherwise.
 
     Raises:
         ValueError: Raised if ``interval`` is not correct.
@@ -99,7 +100,7 @@ def isin(dataarray: xr.DataArray, values: Any) -> xr.DataArray:
 
     Returns:
         Boolean DataArray each value of which is ``True`` where it is
-            equivalent to ``values`` or in ``values`` and ``False`` otherwise.
+        equivalent to ``values`` or in ``values`` and ``False`` otherwise.
 
     """
     return dataarray.isin(values)
@@ -115,7 +116,7 @@ def ismatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.DataArr
 
     Returns:
         Boolean DataArray each value of which is ``True``
-            where it matches the pattern and ``False`` otherwise.
+        where it matches the pattern and ``False`` otherwise.
 
     Raises:
         TypeError: Raised if ``dataarray.dtype`` is not string-like.
@@ -146,12 +147,12 @@ def isnotbetween(
         upper: Upper endpoint of the interval.
             If ``None`` is given, then the upper end is not evaluated.
         interval: String which determine the type of the interval.
-            Either ``[]`` (closed; default), ``[)`` (L-closed, R-open),
-            ``(]`` (L-open, R-closed), or ``()`` (open) is accepted.
+            Either ``'[]'`` (closed; default), ``'[)'`` (L-closed, R-open),
+            ``'(]'`` (L-open, R-closed), or ``'()'`` (open) is accepted.
 
     Returns:
         Boolean DataArray each value of which is ``True`` where
-            it does **not** fall within the interval and ``True`` otherwise.
+        it does **not** fall within the interval and ``True`` otherwise.
 
     Raises:
         ValueError: Raised if ``interval`` is not correct.
@@ -170,7 +171,7 @@ def isnotin(dataarray: xr.DataArray, values: Any) -> xr.DataArray:
 
     Returns:
         Boolean DataArray each value of which is ``True`` where it is **not**
-            equivalent to ``values`` or **not** in ``values`` and ``False`` otherwise.
+        equivalent to ``values`` or **not** in ``values`` and ``False`` otherwise.
 
     """
     return ~isin(dataarray, values)
@@ -186,7 +187,7 @@ def isnotmatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.Data
 
     Returns:
         Boolean DataArray each value of which is ``True`` where
-            it does **not** match the pattern and ``False`` otherwise.
+        it does **not** match the pattern and ``False`` otherwise.
 
     Raises:
         TypeError: Raised if ``dataarray.dtype`` is not string-like.

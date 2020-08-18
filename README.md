@@ -24,3 +24,14 @@ After importing the package, several DataArray methods (`dataarray.is*()`) will 
 $ pip install xarray-compare
 ```
 
+## List of available methods
+
+- `.isbetween(lower, upper)`: Test whether each value in a DataArray falls within an interval
+- `.ismatch(pattern)`: Test whether each string in a DataArray matches a regex pattern
+
+Methods of "not-in" version are also provided for readability.
+
+- `.isnotin(values)`: Equivalent to `~dataarray.isin(values)` (`.isin()` is an xarray's builtin)
+- `.isnotbetween(lower, upper)`: Equivalent to `~dataarray.isbetween(lower, upper)`
+- `.isnotmatch(pattern)`: Equivalent to `~dataarray.ismatch(pattern)`
+

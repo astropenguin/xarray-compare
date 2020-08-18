@@ -12,6 +12,8 @@ from xarray import register_dataarray_accessor
 
 # main features
 def dataarray_method(func: Callable) -> Callable:
+    """Decorator to make a DataArray function available as a method."""
+
     class Accessor:
         def __init__(self, dataarray):
             self.dataarray = dataarray

@@ -48,7 +48,7 @@ def isbetween(
 
     An interval is defined by ``lower``, ``upper``, and ``interval``.
     If ``interval`` is given as ``'[)'``, the interval is [lower, upper).
-    Then the function returns ``(dataarray => lower) & (dataarray < upper)``.
+    Then the function returns ``(dataarray >= lower) & (dataarray < upper)``.
 
     Args:
         dataarray: DataArray to be compared.

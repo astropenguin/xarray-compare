@@ -11,7 +11,7 @@ __all__ = [
 # standard library
 import re
 from enum import Enum
-from typing import Any, Optional, Pattern, Union
+from typing import Any, Pattern, Union
 from operator import ge, gt, le, lt
 
 
@@ -42,10 +42,7 @@ OPERATORS = {
 # main features
 @dataarray_method
 def isbetween(
-    dataarray: xr.DataArray,
-    lower: Optional[Any] = None,
-    upper: Optional[Any] = None,
-    interval: str = "[]",
+    dataarray: xr.DataArray, lower: Any, upper: Any, interval: str = "[]",
 ) -> xr.DataArray:
     operators = OPERATORS[Intervals(interval)]
 
@@ -89,10 +86,7 @@ def ismatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.DataArr
 
 @dataarray_method
 def isnotbetween(
-    dataarray: xr.DataArray,
-    lower: Optional[Any] = None,
-    upper: Optional[Any] = None,
-    interval: str = "[]",
+    dataarray: xr.DataArray, lower: Any, upper: Any, interval: str = "[]",
 ) -> xr.DataArray:
     return ~isbetween(dataarray, lower, upper, interval)
 

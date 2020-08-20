@@ -1,6 +1,6 @@
 .. include:: readme.rst
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    _apidoc/modules

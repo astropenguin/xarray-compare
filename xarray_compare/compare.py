@@ -107,12 +107,15 @@ def isin(dataarray: xr.DataArray, values: Any) -> xr.DataArray:
 
 
 @dataarray_method
-def ismatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.DataArray:
+def ismatch(
+    dataarray: xr.DataArray, pattern: Union[Pattern, str], flags: re.RegexFlag = 0
+) -> xr.DataArray:
     """Test whether each string in a DataArray matches a regex pattern.
 
     Args:
         dataarray: String DataArray to be compared.
         pattern: String or compiled regex pattern.
+        flags: Regex flags to control the matching behavior.
 
     Returns:
         Boolean DataArray each value of which is ``True``
@@ -125,13 +128,13 @@ def ismatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.DataArr
     if not np.issubdtype(dataarray.dtype, np.str_):
         raise TypeError("Can only be used for string DataArray.")
 
-    pattern = re.compile(pattern)
+    pattern = re.compile(pattern, flags)
     search = np.vectorize(lambda string: pattern.search(string))
 
-    index = xr.zeros_like(dataarray, bool)
-    index.values = search(dataarray.values).astype(bool)
+    result = xr.zeros_like(dataarray, bool)
+    result.values = search(dataarray.values).astype(bool)
 
-    return index
+    return result
 
 
 @dataarray_method
@@ -178,12 +181,15 @@ def isnotin(dataarray: xr.DataArray, values: Any) -> xr.DataArray:
 
 
 @dataarray_method
-def isnotmatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.DataArray:
+def isnotmatch(
+    dataarray: xr.DataArray, pattern: Union[Pattern, str], flags: re.RegexFlag = 0
+) -> xr.DataArray:
     """Equivalent to ~ismatch().
 
     Args:
         dataarray: String DataArray to be compared.
         pattern: String or compiled regex pattern.
+        flags: Regex flags to control the matching behavior.
 
     Returns:
         Boolean DataArray each value of which is ``True`` where
@@ -193,4 +199,4 @@ def isnotmatch(dataarray: xr.DataArray, pattern: Union[Pattern, str]) -> xr.Data
         TypeError: Raised if ``dataarray.dtype`` is not string-like.
 
     """
-    return ~ismatch(dataarray, pattern)
+    return ~ismatch(dataarray, pattern, flags)

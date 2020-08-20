@@ -1,5 +1,6 @@
 #!/bin/bash
 set -eu
 
+pandoc -f markdown -t rst -o docs/readme.rst README.md
 sphinx-apidoc -f -o docs/_apidoc xarray_compare
 sphinx-build docs docs/_build

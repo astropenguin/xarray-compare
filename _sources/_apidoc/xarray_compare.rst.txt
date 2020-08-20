@@ -1,0 +1,29 @@
+xarray\_compare package
+=======================
+
+Submodules
+----------
+
+xarray\_compare.compare module
+------------------------------
+
+.. automodule:: xarray_compare.compare
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+xarray\_compare.utils module
+----------------------------
+
+.. automodule:: xarray_compare.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: xarray_compare
+   :members:
+   :undoc-members:
+   :show-inheritance:

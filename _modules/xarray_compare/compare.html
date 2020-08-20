@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xarray_compare.compare &#8212; xarray-compare 0.2.0 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <a class="navbar-brand" href="../../index.html">
+      <img src="../../_static/logo.svg" class="logo" alt="logo">
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../_apidoc/modules.html">xarray_compare</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/astropenguin/xarray-compare/" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/astropengu_in/" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for xarray_compare.compare</h1><div class="highlight"><pre>
+<span></span><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;isbetween&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ismatch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isnotbetween&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isnotin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;isnotmatch&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="c1"># standard library</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Pattern</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">ge</span><span class="p">,</span> <span class="n">gt</span><span class="p">,</span> <span class="n">le</span><span class="p">,</span> <span class="n">lt</span>
+
+
+<span class="c1"># dependencies</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">dataarray_method</span>
+
+
+<span class="c1"># constants</span>
+<span class="k">class</span> <span class="nc">Intervals</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Definitions of mathematical intervals.&quot;&quot;&quot;</span>
+
+    <span class="n">LORO</span> <span class="o">=</span> <span class="s2">&quot;()&quot;</span>  <span class="c1">#: left-open, right-open</span>
+    <span class="n">LCRO</span> <span class="o">=</span> <span class="s2">&quot;[)&quot;</span>  <span class="c1">#: left-closed, right-open</span>
+    <span class="n">LORC</span> <span class="o">=</span> <span class="s2">&quot;(]&quot;</span>  <span class="c1">#: left-open, right-closed</span>
+    <span class="n">LCRC</span> <span class="o">=</span> <span class="s2">&quot;[]&quot;</span>  <span class="c1">#: left-closed, right-closed</span>
+
+
+<span class="n">OPERATORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Intervals</span><span class="o">.</span><span class="n">LORO</span><span class="p">:</span> <span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">lt</span><span class="p">),</span>
+    <span class="n">Intervals</span><span class="o">.</span><span class="n">LCRO</span><span class="p">:</span> <span class="p">(</span><span class="n">ge</span><span class="p">,</span> <span class="n">lt</span><span class="p">),</span>
+    <span class="n">Intervals</span><span class="o">.</span><span class="n">LORC</span><span class="p">:</span> <span class="p">(</span><span class="n">gt</span><span class="p">,</span> <span class="n">le</span><span class="p">),</span>
+    <span class="n">Intervals</span><span class="o">.</span><span class="n">LCRC</span><span class="p">:</span> <span class="p">(</span><span class="n">ge</span><span class="p">,</span> <span class="n">le</span><span class="p">),</span>
+<span class="p">}</span>
+
+
+<span class="c1"># main features</span>
+<div class="viewcode-block" id="isbetween"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.isbetween">[docs]</a><span class="nd">@dataarray_method</span>
+<span class="k">def</span> <span class="nf">isbetween</span><span class="p">(</span>
+    <span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">lower</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;[]&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Test whether each value in a DataArray falls within an interval.</span>
+
+<span class="sd">    An interval is defined by ``lower``, ``upper``, and ``interval``.</span>
+<span class="sd">    For example, if ``interval`` is given as ``&#39;[)&#39;``, the interval of</span>
+<span class="sd">    [lower, upper) will be used for the evaluation. Then the function</span>
+<span class="sd">    returns ``(dataarray &gt;= lower) &amp; (dataarray &lt; upper)``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: DataArray to be compared.</span>
+<span class="sd">        lower: Lower endpoint of the interval.</span>
+<span class="sd">            If ``None`` is given, then the lower end is not evaluated.</span>
+<span class="sd">        upper: Upper endpoint of the interval.</span>
+<span class="sd">            If ``None`` is given, then the upper end is not evaluated.</span>
+<span class="sd">        interval: String which determine the type of the interval.</span>
+<span class="sd">            Either ``&#39;[]&#39;`` (closed; default), ``&#39;[)&#39;`` (L-closed, R-open),</span>
+<span class="sd">            ``&#39;(]&#39;`` (L-open, R-closed), or ``&#39;()&#39;`` (open) is accepted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True``</span>
+<span class="sd">        where it falls within the interval and ``False`` otherwise.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if ``interval`` is not correct.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">operators</span> <span class="o">=</span> <span class="n">OPERATORS</span><span class="p">[</span><span class="n">Intervals</span><span class="p">(</span><span class="n">interval</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubsctype</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">upper</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">upper</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">lower</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lower_index</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lower_index</span> <span class="o">=</span> <span class="n">operators</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">lower</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">upper</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">upper_index</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">upper_index</span> <span class="o">=</span> <span class="n">operators</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">lower_index</span> <span class="o">&amp;</span> <span class="n">upper_index</span></div>
+
+
+<div class="viewcode-block" id="isin"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.isin">[docs]</a><span class="k">def</span> <span class="nf">isin</span><span class="p">(</span><span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Equivalent to dataarray.isin().</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: DataArray to be compared.</span>
+<span class="sd">        values: Scalar value or sequence of values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True`` where it is</span>
+<span class="sd">        equivalent to ``values`` or in ``values`` and ``False`` otherwise.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">dataarray</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ismatch"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.ismatch">[docs]</a><span class="nd">@dataarray_method</span>
+<span class="k">def</span> <span class="nf">ismatch</span><span class="p">(</span>
+    <span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">pattern</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Pattern</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">flags</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">RegexFlag</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Test whether each string in a DataArray matches a regex pattern.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: String DataArray to be compared.</span>
+<span class="sd">        pattern: String or compiled regex pattern.</span>
+<span class="sd">        flags: Regex flags to control the matching behavior.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True``</span>
+<span class="sd">        where it matches the pattern and ``False`` otherwise.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError: Raised if ``dataarray.dtype`` is not string-like.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">dataarray</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">str_</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Can only be used for string DataArray.&quot;</span><span class="p">)</span>
+
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+    <span class="n">search</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">dataarray</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="isnotbetween"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.isnotbetween">[docs]</a><span class="nd">@dataarray_method</span>
+<span class="k">def</span> <span class="nf">isnotbetween</span><span class="p">(</span>
+    <span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">lower</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;[]&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Equivalent to ~isbetween().</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: DataArray to be compared.</span>
+<span class="sd">        lower: Lower endpoint of the interval.</span>
+<span class="sd">            If ``None`` is given, then the lower end is not evaluated.</span>
+<span class="sd">        upper: Upper endpoint of the interval.</span>
+<span class="sd">            If ``None`` is given, then the upper end is not evaluated.</span>
+<span class="sd">        interval: String which determine the type of the interval.</span>
+<span class="sd">            Either ``&#39;[]&#39;`` (closed; default), ``&#39;[)&#39;`` (L-closed, R-open),</span>
+<span class="sd">            ``&#39;(]&#39;`` (L-open, R-closed), or ``&#39;()&#39;`` (open) is accepted.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True`` where</span>
+<span class="sd">        it does **not** fall within the interval and ``True`` otherwise.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Raised if ``interval`` is not correct.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">~</span><span class="n">isbetween</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="isnotin"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.isnotin">[docs]</a><span class="nd">@dataarray_method</span>
+<span class="k">def</span> <span class="nf">isnotin</span><span class="p">(</span><span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Equivalent to ~isin().</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: DataArray to be compared.</span>
+<span class="sd">        values: Scalar value or sequence of values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True`` where it is **not**</span>
+<span class="sd">        equivalent to ``values`` or **not** in ``values`` and ``False`` otherwise.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">~</span><span class="n">isin</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="isnotmatch"><a class="viewcode-back" href="../../_apidoc/xarray_compare.html#xarray_compare.compare.isnotmatch">[docs]</a><span class="nd">@dataarray_method</span>
+<span class="k">def</span> <span class="nf">isnotmatch</span><span class="p">(</span>
+    <span class="n">dataarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">,</span> <span class="n">pattern</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Pattern</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">flags</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">RegexFlag</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Equivalent to ~ismatch().</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dataarray: String DataArray to be compared.</span>
+<span class="sd">        pattern: String or compiled regex pattern.</span>
+<span class="sd">        flags: Regex flags to control the matching behavior.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean DataArray each value of which is ``True`` where</span>
+<span class="sd">        it does **not** match the pattern and ``False`` otherwise.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError: Raised if ``dataarray.dtype`` is not string-like.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="o">~</span><span class="n">ismatch</span><span class="p">(</span><span class="n">dataarray</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020, Akio Taniguchi.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

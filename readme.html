@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xarray-compare &#8212; xarray-compare 0.2.0 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <a class="navbar-brand" href="index.html">
+      <img src="_static/logo.svg" class="logo" alt="logo">
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="_apidoc/modules.html">xarray_compare</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/astropenguin/xarray-compare/" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/astropengu_in/" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#tl-dr" class="nav-link">TL;DR</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#requirements" class="nav-link">Requirements</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#installation" class="nav-link">Installation</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#list-of-available-methods" class="nav-link">List of available methods</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#examples" class="nav-link">Examples</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="xarray-compare">
+<h1>xarray-compare<a class="headerlink" href="#xarray-compare" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://pypi.org/pypi/xarray-compare/"><img alt="PyPI" src="https://img.shields.io/pypi/v/xarray-compare.svg?label=PyPI&amp;style=flat-square" /></a> <a class="reference external" href="https://pypi.org/pypi/xarray-compare/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/xarray-compare.svg?label=Python&amp;color=yellow&amp;style=flat-square" /></a> <a class="reference external" href="https://github.com/astropenguin/xarray-compare/actions"><img alt="Test" src="https://img.shields.io/github/workflow/status/astropenguin/xarray-compare/Test?logo=github&amp;label=Test&amp;style=flat-square" /></a> <a class="reference external" href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?label=License&amp;style=flat-square" /></a> <a class="reference external" href="https://doi.org/10.5281/zenodo.3988924"><img alt="DOI" src="https://img.shields.io/badge/DOI-10.5281/zenodo.3988924-blue?style=flat-square" /></a></p>
+<p>xarray extension for data comparison</p>
+<div class="section" id="tl-dr">
+<h2>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
+<p>xarray-compare is a third-party Python package which provides extra
+data-comparison features. After importing the package, several DataArray
+methods (<code class="docutils literal notranslate"><span class="pre">dataarray.is*()</span></code>) will be available.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Python:</strong> 3.6, 3.7, or 3.8 (tested by the author)</p></li>
+<li><p><strong>Dependencies:</strong> See
+<a class="reference external" href="https://github.com/astropenguin/xarray-compare/blob/master/pyproject.toml">pyproject.toml</a></p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install xarray-compare
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-of-available-methods">
+<h2>List of available methods<a class="headerlink" href="#list-of-available-methods" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.isbetween(lower,</span> <span class="pre">upper)</span></code>: Test whether each value in a DataArray
+falls within an interval</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ismatch(pattern)</span></code>: Test whether each string in a DataArray
+matches a regex pattern</p></li>
+</ul>
+<p>Methods of “not-in” version are also provided for readability.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.isnotin(values)</span></code>: Equivalent to <code class="docutils literal notranslate"><span class="pre">~dataarray.isin(values)</span></code>
+(<code class="docutils literal notranslate"><span class="pre">.isin()</span></code> is an xarray’s builtin)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.isnotbetween(lower,</span> <span class="pre">upper)</span></code>: Equivalent to
+<code class="docutils literal notranslate"><span class="pre">~dataarray.isbetween(lower,</span> <span class="pre">upper)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.isnotmatch(pattern)</span></code>: Equivalent to
+<code class="docutils literal notranslate"><span class="pre">~dataarray.ismatch(pattern)</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>xarray-compare is a just-import package. After importing it, methods
+become available from normal DataArray instances.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">xarray_compare</span>
+</pre></div>
+</div>
+<p>A method returns a boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+where that of the input DataArray fulfills the condition and <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise. This is why it works well with the <code class="docutils literal notranslate"><span class="pre">dataarray.where()</span></code>
+method.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
+<span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">isbetween</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># &lt;xarray.DataArray (dim_0: 4)&gt;</span>
+<span class="c1"># array([1., 1., 2., 3.])</span>
+<span class="c1"># Dimensions without coordinates: dim_0</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">da</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;aa&#39;</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;bc&#39;</span><span class="p">])</span>
+<span class="n">da</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">da</span><span class="o">.</span><span class="n">ismatch</span><span class="p">(</span><span class="s2">&quot;^a+$&quot;</span><span class="p">),</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># &lt;xarray.DataArray (dim_0: 2)&gt;</span>
+<span class="c1"># array([&#39;a&#39;, &#39;aa&#39;], dtype=object)</span>
+<span class="c1"># Dimensions without coordinates: dim_0</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020, Akio Taniguchi.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

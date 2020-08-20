@@ -1,0 +1,7 @@
+xarray_compare
+==============
+
+.. toctree::
+   :maxdepth: 4
+
+   xarray_compare

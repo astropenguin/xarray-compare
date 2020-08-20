@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xarray_compare package &#8212; xarray-compare 0.2.0 documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="xarray_compare" href="modules.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    
+    <a class="navbar-brand" href="../index.html">
+      <img src="../_static/logo.svg" class="logo" alt="logo">
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="modules.html">xarray_compare</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/astropenguin/xarray-compare/" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/astropengu_in/" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+          <div class="col-12 col-md-3 bd-sidebar">
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+  <div class="bd-toc-item active">
+  
+
+  <ul class="nav bd-sidenav">
+      
+      
+        
+          
+              <li class="active">
+                  <a href="">xarray_compare package</a>
+              </li>
+          
+        
+      
+      
+    </ul>
+
+</nav>
+          </div>
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#submodules" class="nav-link">Submodules</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#module-xarray_compare.compare" class="nav-link">xarray_compare.compare module</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#module-xarray_compare.utils" class="nav-link">xarray_compare.utils module</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#module-xarray_compare" class="nav-link">Module contents</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="xarray-compare-package">
+<h1>xarray_compare package<a class="headerlink" href="#xarray-compare-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-xarray_compare.compare">
+<span id="xarray-compare-compare-module"></span><h2>xarray_compare.compare module<a class="headerlink" href="#module-xarray_compare.compare" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="xarray_compare.compare.isbetween">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">isbetween</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">lower</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">upper</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">interval</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'[]'</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#isbetween"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.isbetween" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether each value in a DataArray falls within an interval.</p>
+<p>An interval is defined by <code class="docutils literal notranslate"><span class="pre">lower</span></code>, <code class="docutils literal notranslate"><span class="pre">upper</span></code>, and <code class="docutils literal notranslate"><span class="pre">interval</span></code>.
+For example, if <code class="docutils literal notranslate"><span class="pre">interval</span></code> is given as <code class="docutils literal notranslate"><span class="pre">'[)'</span></code>, the interval of
+[lower, upper) will be used for the evaluation. Then the function
+returns <code class="docutils literal notranslate"><span class="pre">(dataarray</span> <span class="pre">&gt;=</span> <span class="pre">lower)</span> <span class="pre">&amp;</span> <span class="pre">(dataarray</span> <span class="pre">&lt;</span> <span class="pre">upper)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – DataArray to be compared.</p></li>
+<li><p><strong>lower</strong> – Lower endpoint of the interval.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, then the lower end is not evaluated.</p></li>
+<li><p><strong>upper</strong> – Upper endpoint of the interval.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, then the upper end is not evaluated.</p></li>
+<li><p><strong>interval</strong> – String which determine the type of the interval.
+Either <code class="docutils literal notranslate"><span class="pre">'[]'</span></code> (closed; default), <code class="docutils literal notranslate"><span class="pre">'[)'</span></code> (L-closed, R-open),
+<code class="docutils literal notranslate"><span class="pre">'(]'</span></code> (L-open, R-closed), or <code class="docutils literal notranslate"><span class="pre">'()'</span></code> (open) is accepted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+where it falls within the interval and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Raised if <code class="docutils literal notranslate"><span class="pre">interval</span></code> is not correct.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="xarray_compare.compare.isin">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">isin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">values</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#isin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.isin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to dataarray.isin().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – DataArray to be compared.</p></li>
+<li><p><strong>values</strong> – Scalar value or sequence of values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code> where it is
+equivalent to <code class="docutils literal notranslate"><span class="pre">values</span></code> or in <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="xarray_compare.compare.ismatch">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">ismatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Pattern<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">flags</span><span class="p">:</span> <span class="n">re.RegexFlag</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#ismatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.ismatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether each string in a DataArray matches a regex pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – String DataArray to be compared.</p></li>
+<li><p><strong>pattern</strong> – String or compiled regex pattern.</p></li>
+<li><p><strong>flags</strong> – Regex flags to control the matching behavior.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+where it matches the pattern and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – Raised if <code class="docutils literal notranslate"><span class="pre">dataarray.dtype</span></code> is not string-like.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="xarray_compare.compare.isnotbetween">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">isnotbetween</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">lower</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">upper</span><span class="p">:</span> <span class="n">Any</span></em>, <em class="sig-param"><span class="n">interval</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'[]'</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#isnotbetween"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.isnotbetween" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to ~isbetween().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – DataArray to be compared.</p></li>
+<li><p><strong>lower</strong> – Lower endpoint of the interval.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, then the lower end is not evaluated.</p></li>
+<li><p><strong>upper</strong> – Upper endpoint of the interval.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code> is given, then the upper end is not evaluated.</p></li>
+<li><p><strong>interval</strong> – String which determine the type of the interval.
+Either <code class="docutils literal notranslate"><span class="pre">'[]'</span></code> (closed; default), <code class="docutils literal notranslate"><span class="pre">'[)'</span></code> (L-closed, R-open),
+<code class="docutils literal notranslate"><span class="pre">'(]'</span></code> (L-open, R-closed), or <code class="docutils literal notranslate"><span class="pre">'()'</span></code> (open) is accepted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code> where
+it does <strong>not</strong> fall within the interval and <code class="docutils literal notranslate"><span class="pre">True</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Raised if <code class="docutils literal notranslate"><span class="pre">interval</span></code> is not correct.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="xarray_compare.compare.isnotin">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">isnotin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">values</span><span class="p">:</span> <span class="n">Any</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#isnotin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.isnotin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to ~isin().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – DataArray to be compared.</p></li>
+<li><p><strong>values</strong> – Scalar value or sequence of values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code> where it is <strong>not</strong>
+equivalent to <code class="docutils literal notranslate"><span class="pre">values</span></code> or <strong>not</strong> in <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="xarray_compare.compare.isnotmatch">
+<code class="sig-prename descclassname">xarray_compare.compare.</code><code class="sig-name descname">isnotmatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataarray</span><span class="p">:</span> <span class="n">xarray.core.dataarray.DataArray</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>Pattern<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">flags</span><span class="p">:</span> <span class="n">re.RegexFlag</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; xarray.core.dataarray.DataArray<a class="reference internal" href="../_modules/xarray_compare/compare.html#isnotmatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.compare.isnotmatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to ~ismatch().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataarray</strong> – String DataArray to be compared.</p></li>
+<li><p><strong>pattern</strong> – String or compiled regex pattern.</p></li>
+<li><p><strong>flags</strong> – Regex flags to control the matching behavior.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Boolean DataArray each value of which is <code class="docutils literal notranslate"><span class="pre">True</span></code> where
+it does <strong>not</strong> match the pattern and <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – Raised if <code class="docutils literal notranslate"><span class="pre">dataarray.dtype</span></code> is not string-like.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-xarray_compare.utils">
+<span id="xarray-compare-utils-module"></span><h2>xarray_compare.utils module<a class="headerlink" href="#module-xarray_compare.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="xarray_compare.utils.dataarray_method">
+<code class="sig-prename descclassname">xarray_compare.utils.</code><code class="sig-name descname">dataarray_method</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span></em><span class="sig-paren">)</span> &#x2192; Callable<a class="reference internal" href="../_modules/xarray_compare/utils.html#dataarray_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#xarray_compare.utils.dataarray_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator to make a DataArray function available as a method.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-xarray_compare">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-xarray_compare" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="modules.html" title="previous page">xarray_compare</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    <script src="../_static/js/index.js"></script>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020, Akio Taniguchi.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

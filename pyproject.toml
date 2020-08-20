@@ -5,8 +5,8 @@ description = "xarray extension for data comparison"
 authors = ["Akio Taniguchi <taniguchi@a.phys.nagoya-u.ac.jp>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/astropenguin/xarray-compare"
-documentation = "https://astropenguin.github.io/xarray-compare"
+homepage = "https://github.com/astropenguin/xarray-compare/"
+documentation = "https://astropenguin.github.io/xarray-compare/"
 
 [tool.poetry.dependencies]
 python = "^3.6"
